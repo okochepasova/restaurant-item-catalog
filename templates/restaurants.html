@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h1>Restaurants</h1>
+{% if user_id %}
+<a class='button --teal-btn' href="{{url_for('newRestaurant')}}">
+Create New Restaurant</a>
+{% endif %}
+
+<!-- Messages -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul>
+    {% for m in messages %}
+    <li><strong>{{m}}</strong></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+<!-- End Messages -->
+
+<!-- Restaurant List -->
+<div class="list --teal-list">
+{% for r in list %}
+    <div class='-listitem --teal-item'>
+    <label>{{r.name|safe}}</label><br>
+
+    <a href="{{url_for('showMenu',restaurant_id=r.id)}}">Menu</a><br>
+    {% if user_id and user_id == r.user_id %}
+    <a href="{{url_for('editRestaurant',restaurant_id=r.id)}}">Edit</a><br>
+    <a href="{{url_for('deleteRestaurant',restaurant_id=r.id)}}">Delete</a><br>
+    {% endif %}
+
+    </div>
+{% endfor %}
+</div>
+<!-- End Restaurant List -->
+{% endblock %}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+
+<title>Restaurant</title>
+<link rel='stylesheet' type='text/css' href="{{url_for('static', 
+filename='main.css')}}" >
+<link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+
+</head>
+<body>
+
+<!-- Header -->
+<header>
+<a href="{{url_for('showRestaurants')}}">Home</a>
+{% if user_id %}<a href="{{url_for('disconnect')}}">Log Out</a>
+{% else %}<a href="{{url_for('showLogin')}}">Log In</a>
+{% endif %}
+</header>
+<!-- End Header -->
+
+{% block body %}
+{% endblock %}
+
+</body>
+</html>

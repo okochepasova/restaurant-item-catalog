@@ -1,0 +1,45 @@
+body {
+  font-family: sans-seref;
+  background-color: #333;
+}
+h1, h2, h3, h4 {color: #ccc;}
+h1, h2 {
+  font-family: 'Georgia', seref;
+  margin: 0;
+}
+h1 {border-bottom: 2px solid #eee;}
+h2 {font-size: 1.2em;}
+
+p {color: #ccc;}
+a {
+  text-decoration: none;
+  color: #ffc;
+  font-size: .75em;
+}
+
+.pane {
+  position: absolute;
+  left: 25%;
+  padding: 5px;
+  margin: 5px;
+
+  border: 2px solid;
+  border-radius: 25px;
+  border-color: #999;
+}
+.header {left:50%; text-align: center;}
+.name p {
+  width: 50%;
+  display: inline-block;
+  float: left;
+  color: #ffc;
+}
+.description p {color: #ccc;}
+.price p {
+  text-align: right;
+  width: 50%;
+  float: right;
+  color: #ffc;
+}
+
+.flash {background: #cee5f5;}

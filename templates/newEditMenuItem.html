@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+
+<title>Restaurant</title>
+<link rel='stylesheet' type='text/css' href="{{url_for('static', 
+filename='main.css')}}" >
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+<body>
+
+<h1>{{action}} a Menu Item</h1>
+<!-- Messages -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul>
+    {% for m in messages %}
+    <li><strong>{{m}}</strong></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+<!-- End Messages -->
+
+<!-- Form -->
+{% if action == 'Create' %}
+<form method='post' class='--teal-item'
+action="{{url_for('newMenuItem',restaurant_id=restaurant_id)}}">
+{% elif action == 'Edit' %}
+<form method='post' class='--teal-item' action="{{url_for('editMenuItem',
+restaurant_id=restaurant_id,menu_id=item.id)}}" >
+{% else %}
+<form method='post' class='--teal-item'>
+{% endif %}
+
+<!-- Text -->
+<p class='first'>Name:</p>
+<input type='text' size='30' name='name'
+    {% if item %}value='{{item.name|safe}}'{% endif %}>
+<p>Price:</p>
+<input type='text' size='30' name='price'
+    {% if item %}value='{{item.price|safe}}'{% endif %}>
+<p>Description:</p>
+<textarea name='description'>{% if item %}{{item.description|safe}}{% endif %}</textarea>
+<!-- End Text -->
+
+<!-- Bullet Points -->
+<p>Course:</p>
+<input type="radio" name="course" value="Appetizer"
+    {% if not item or item.course == 'Appetizer' %} checked {% endif %}>
+ Appetizer<br>
+<input type="radio" name="course" value="Entree"
+    {% if item and item.course == 'Entree' %} checked {% endif %}> Entree<br>
+<input type="radio" name="course" value="Dessert"
+    {% if item and item.course == 'Dessert' %} checked {% endif %}> Dessert<br>
+<input type="radio" name="course" value="Beverage"
+    {% if item and item.course == 'Beverage' %} checked {% endif %}> Beverage<br>
+<!-- End Bullet Points -->
+
+<br><input type='submit' value='{{action}}'>
+
+</form>
+<!-- End Frm -->
+<a href="{{url_for('showMenu', restaurant_id=restaurant_id)}}"
+    class='button --teal-btn'>Cancel</a>
+
+</body>
+</html>

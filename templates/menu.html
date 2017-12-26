@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body %}
+<!-- Restaurant Info -->
+<table id='info'>
+    <tr>
+        <td><img src='{{creator.picture}}'
+                alt='user picture' class='--rounded' >
+        </td>
+        <td><h1>{{rest.name|safe}}</h1></td>
+    </tr>
+    <tr>
+        <td><label>{{creator.name}}</label></td>
+        <td>
+        {% if user_id and user_id == creator.id %}
+            <a href="{{url_for('newMenuItem',restaurant_id=rest.id)}}"
+                class='button --teal-btn'>Create New Item</a>
+        {% endif %}
+        </td>
+    </tr>
+</table>
+<!-- End Restaurant Info -->
+
+<!-- Messages -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul>
+    {% for m in messages %}
+    <li><strong>{{m}}</strong></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+<!-- End Messages -->
+
+<!-- Menu Items -->
+<div class='list --teal-list'>
+{% if not items %}<div class='-listitem'>No Items</div>{% endif %}
+{% for i in items %}
+    <div class='-listitem --rounded --teal-item'>
+    <img alt='{{i.course}}' class='icon --round'
+    {% if i.course == 'Appetizer' %}
+        src="https://d30y9cdsu7xlg0.cloudfront.net/png/71949-200.png">
+    {% elif i.course == 'Entree' %}
+        src="https://d30y9cdsu7xlg0.cloudfront.net/png/363515-200.png">
+    {% elif i.course == 'Dessert' %}
+        src="https://d30y9cdsu7xlg0.cloudfront.net/png/29730-200.png">
+    {% elif i.course == 'Beverage' %}
+        src="https://d30y9cdsu7xlg0.cloudfront.net/png/90393-200.png">
+    {% endif %}
+    <p class='first'>{{i.name|safe}}</p>
+    <p>{{i.description|safe}}</p>
+    <p>{{i.price|safe}}</p>
+
+    {% if user_id == i.user_id %}
+    <a href="{{url_for('editMenuItem',restaurant_id=rest.id,menu_id=i.id)}}"
+    >Edit</a><br>
+
+    <a href="{{url_for('deleteMenuItem',restaurant_id=rest.id,menu_id=i.id)}}"
+    >Delete</a>
+    {% endif %}
+    </div>
+{% endfor %}
+</div>
+<!-- End Menu Items -->
+{% endblock %}

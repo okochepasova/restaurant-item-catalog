@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+
+<title>Restaurant</title>
+<link rel='stylesheet' type='text/css' href="{{url_for('static', 
+filename='main.css')}}" >
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+<body>
+
+<h1>{{action}} a Restaurant</h1>
+<!-- Messages -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul>
+    {% for m in messages %}
+    <li><strong>{{m}}</strong></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
+<!-- End Messages -->
+
+<!-- Form -->
+{% if action == 'Create' %}
+<form method='post' class='--teal-item' action="{{url_for('newRestaurant')}}">
+{% elif action == 'Edit' %}
+<form method='post' class='--teal-item' action="{{url_for('editRestaurant', 
+restaurant_id=rest.id)}}">
+{% else %}
+<form method='post' class='--teal-item'>
+{% endif %}
+
+<p class='first'>Name:</p>
+<input type='text' size='30' name='name' 
+{% if rest %}placeholder='{{rest.name}}'{% endif %}>
+<input type='submit' value='Create'>
+
+</form>
+<!-- End Form -->
+<a href="{{url_for('showRestaurants')}}" class='button --teal-btn'>Cancel</a>
+
+</body>
+</html>

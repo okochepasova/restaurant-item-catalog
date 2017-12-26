@@ -1,0 +1,98 @@
+body {
+  font-size: 20px;
+  color: #008080;
+  background-color: #40e0d0;
+}
+
+label {font-size: 1.3em;}
+form {
+  padding: 0.75em;
+  margin-bottom: 1em;
+}
+h1, h2, h3, h4 {margin: 0 0 0.6em;}
+form p {margin-bottom: 0;}
+textarea {
+  width: 30em;
+  height: 8em;
+}
+li {padding: 0.3em;}
+ul {
+  list-style-type: none;
+  background-color: greenyellow;
+  color: green;
+  border: 2px solid limegreen;
+}
+#info img {
+  height: 100px;
+  width: 100px;
+  border: 5px ridge #fff;
+}
+td {padding: 0.25em;}
+header {float: right;}
+header a {margin: 5px;}
+
+.first {margin-top: 0;}
+.icon {
+  width: 1.8em;
+  height: 1.8em;
+  float: left;
+  margin-right: 0.5em;
+  background-color: #40e0d0;/**/
+}
+.list{
+  max-height: 70vh;
+  overflow: auto;
+
+  border: 3px solid #000;
+  padding: 5px;
+  margin-top: 1em;
+}
+.button {
+  padding: 0.4em;
+  border: 2px outset #000;
+  text-decoration: none;
+}
+.-listitem {
+  padding: 0.4em;
+  margin: 1em 0 1.3em;
+  max-width: 30em;
+}
+
+.--teal-list, .--teal-btn {
+  background-color: #20b2aa;
+  border-color: #008080;
+}
+.--teal-btn {color: #004040;}
+.--teal-btn:hover{
+  background-color: #408080;
+  border-style: inset;
+}
+.--teal-item {
+  color: #ffdab9;
+  background-color: #008080;
+}
+.--rounded {border-radius: 0.75em;}
+.--round {border-radius: 50%;}
+
+/* Media */
+@media only screen and (min-width: 700px) {
+  .-listitem {margin-left: 1.0em;}
+}
+@media only screen and (min-width: 1000px) {
+  .list, h1 {margin-left: auto;margin-right: auto;}
+  .list {max-width: 55em;}
+}
+
+/* Unused
+.--peach-list{
+  background-color: bisque;
+  border-color: burlywood;
+}
+.--egg-item {
+  color: #fa8072;
+  background-color: #f0fff0;
+}
+.--red-link{color: #ff0000;}
+.--red-link:visited{color: #b22222;}
+.--big-text{font-size: 1.25em;}
+*/
