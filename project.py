@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database_setup import Base, Restaurant, MenuItem, User
+from database_setup import Base, Restaurant, MenuItem, User, getEngine
 
 # Verification
 import re
@@ -29,11 +29,12 @@ from flask import send_from_directory
 import os
 
 
+secrets_path = '/home/grader/client_secrets.json'
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open(secrets_path, 'r').read())['web']['client_id']
 
 # Variables
-engine = create_engine('postgresql://localhost:2200/grader')
+engine = getEngine()
 Base.metadata.bind = engine
 DBSession = sessionmaker(bind = engine)
 db_session = DBSession()

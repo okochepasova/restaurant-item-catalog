@@ -5,6 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
+
 Base = declarative_base()
 
 
@@ -87,5 +88,8 @@ class MenuItem(Base):
 
 
 ####### insert at the end of file #######
-engine = create_engine('postgresql://localhost:2200/grader')
+engine = create_engine('postgresql://grader:udacity@localhost:5432/grader')
 Base.metadata.create_all(engine)
+
+def getEngine():
+    return engine;
