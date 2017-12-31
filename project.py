@@ -164,7 +164,7 @@ def gdisconnect():
     # For whatever reason, the given token was invalid.
     if result['status'] != '200':
         return my_response(
-            json.dumps('Failed to revoke token for given user.', 400))
+            json.dumps('Failed to revoke token for given user.'), 400)
 
 # Facebook Connect
 @app.route('/fbconnect', methods=['POST'])

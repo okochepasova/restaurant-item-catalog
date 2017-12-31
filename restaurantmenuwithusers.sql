@@ -1,19 +1,23 @@
 BEGIN TRANSACTION;
-CREATE TABLE "user" (
+DROP TABLE IF EXISTS "users" CASCADE;
+CREATE TABLE "users" (
 	name VARCHAR(80) NOT NULL, 
-	id INTEGER NOT NULL, 
+	id SERIAL, 
 	email VARCHAR(250) NOT NULL, 
 	picture VARCHAR(250), 
 	PRIMARY KEY (id)
 );
-INSERT INTO "user" (name,id,email,picture) VALUES ('Robo Barista',1,'tinnyTim@udacity.com','https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png'),
+INSERT INTO "users" (name,id,email,picture) VALUES ('Robo Barista',1,'tinnyTim@udacity.com','https://pbs.twimg.com/profile_images/2671170543/18debd694829ed78203a5a36dd364160_400x400.png'),
  ('Olga Kochepasova',2,'kochepasovaolga@gmail.com','https://lh5.googleusercontent.com/-eNsS-okqKJk/AAAAAAAAAAI/AAAAAAAAABk/wkcwibmMST4/photo.jpg');
-CREATE TABLE restaurant (
+ALTER SEQUENCE users_id_seq RESTART WITH 3;
+
+DROP TABLE IF EXISTS "restaurant" CASCADE;
+CREATE TABLE "restaurant" (
 	name VARCHAR(80) NOT NULL, 
-	id INTEGER NOT NULL, 
+	id SERIAL, 
 	user_id INTEGER, 
 	PRIMARY KEY (id), 
-	FOREIGN KEY(user_id) REFERENCES "user" (id)
+	FOREIGN KEY(user_id) REFERENCES "users" (id)
 );
 INSERT INTO "restaurant" (name,id,user_id) VALUES ('Urban Burger',1,1),
  ('Super Stir Fry',2,1),
@@ -25,9 +29,12 @@ INSERT INTO "restaurant" (name,id,user_id) VALUES ('Urban Burger',1,1),
  ('Cocina Y Amor ',8,1),
  ('State Bird Provisions',9,1),
  ('Papa&#39;s Pizzeria',10,2);
-CREATE TABLE menu_item (
+ALTER SEQUENCE restaurant_id_seq RESTART WITH 11;
+
+DROP TABLE IF EXISTS "menu_item" CASCADE;
+CREATE TABLE "menu_item" (
 	name VARCHAR(80) NOT NULL, 
-	id INTEGER NOT NULL, 
+	id SERIAL, 
 	course VARCHAR(250), 
 	description VARCHAR(250), 
 	price VARCHAR(8), 
@@ -35,7 +42,7 @@ CREATE TABLE menu_item (
 	user_id INTEGER, 
 	PRIMARY KEY (id), 
 	FOREIGN KEY(restaurant_id) REFERENCES restaurant (id), 
-	FOREIGN KEY(user_id) REFERENCES "user" (id)
+	FOREIGN KEY(user_id) REFERENCES "users" (id)
 );
 INSERT INTO "menu_item" (name,id,course,description,price,restaurant_id,user_id) VALUES ('Veggie Burger',1,'Entree','Juicy grilled veggie patty with tomato mayo and lettuce','$7.50',1,1),
  ('French Fries',2,'Appetizer','with garlic and parmesan','$2.99',1,1),
@@ -87,4 +94,5 @@ INSERT INTO "menu_item" (name,id,course,description,price,restaurant_id,user_id)
  ('Lemon Curd Ice Cream Sandwich',48,'Dessert','Lemon Curd Ice Cream Sandwich on a chocolate macaron with cardamom meringue and cashews','$4.25',9,1),
  ('Glass of Water',49,'Beverage','A tall glass of water, no ice, and entirely free. You are not allowed to keep the glass however.','$0.00',10,2),
  ('Empty Plate',50,'Entree','To be deleted.','$59.99',10,2);
+ALTER SEQUENCE menu_item_id_seq RESTART WITH 51;
 COMMIT;
