@@ -29,7 +29,17 @@ ul {
 }
 td {padding: 0.25em;}
 header {float: right;}
-header a {margin: 5px;}
+header a {
+  margin: 5px;
+  padding: 2px 0.4em;
+}
+a {
+  margin: 0 0.2em;
+  padding: 2px;
+  text-decoration: none;
+  color: #004040;
+}
+a:hover{background-color: #20b2aa;}
 
 .first {margin-top: 0;}
 .icon {
