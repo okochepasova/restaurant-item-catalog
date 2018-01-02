@@ -1,7 +1,7 @@
 secrets_path = 'client_secrets.json'
 secret_key = 'super_secret_key'
 
-engine_url = 'sqlite:///restaurantmenuwithusers.db'
+engine_url = 'sqlite:///catalog_for_sqlite.db'
 
 def setup_lightsail():
     global secrets_path, engine_url
