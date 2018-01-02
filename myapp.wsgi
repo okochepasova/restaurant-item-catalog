@@ -1,6 +1,8 @@
 import sys
 sys.path.insert(0, '/home/grader/projects/restaurant-item-catalog')
 
-from project import app as application
+import configuration
+configuration.setup_lightsail()
 
-application.secret_key = 'super_secret_key'
+from project import app as application
+application.secret_key = configuration.secret_key

@@ -1,3 +1,5 @@
+import configuration
+
 # CONFIGURATION
 import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
@@ -88,7 +90,7 @@ class MenuItem(Base):
 
 
 ####### insert at the end of file #######
-engine = create_engine('postgresql://grader:udacity@localhost:5432/grader')
+engine = create_engine(configuration.engine_url)
 Base.metadata.create_all(engine)
 
 def getEngine():
